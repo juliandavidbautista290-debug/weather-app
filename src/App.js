@@ -8,6 +8,7 @@ function App() {
 
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null)
   
   const getWeather = async () => {
      console.log("Buscando clima...");
@@ -20,6 +21,13 @@ function App() {
 
     const response = await fetch(url);
     const data = await response.json();
+
+    if  (data.cod !== 200) {
+      setError("Ciudad no encontrada ✖️")
+      setWeather(null)
+      setLoading(false)
+      return;
+    }
 
     setWeather(data);
     setLoading(false)
@@ -58,6 +66,7 @@ function App() {
       <button onClick={getWeather}>Buscar</button>
 
        {loading && <p className="loading"> ⌛ Cargando clima...</p>}
+       {error && <p className="error">{error}</p>}
 
       {weather && weather.main && (
         <div className="card">

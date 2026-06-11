@@ -223,3 +223,47 @@ button:hover {
     0 0 20px rgba(255,255,255,0.5),
     0 0 40px rgba(255,255,255,0.3);
 }
+
+.theme-btn {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+  transform: scale(1.05);
+}
+
+.light {
+  color: #222;
+}
+
+.dark {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+.dark .card {
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.dark input {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.dark input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.dark .history-btn,
+.dark .forecast-card {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}

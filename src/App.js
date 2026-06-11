@@ -9,6 +9,9 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null)
   const [forecast, setForecast] = useState([]);
+  const [darkMode, setDarkMode] = useState(
+  JSON.parse(localStorage.getItem("darkMode")) || false
+);
   const [history, setHistory] = useState(
   JSON.parse(localStorage.getItem("history")) || []
 );
@@ -108,8 +111,21 @@ if (weather && weather.weather) {
 
  
   return (
-    <div className={`app ${bgClass}`}>
+    <div className={`app ${bgClass} ${darkMode ? "dark" : "light"}`}>
         <h1>🌦️ Weather Vision Pro</h1>
+
+ <button
+  className="theme-btn"
+  onClick={() => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem("darkMode", JSON.stringify(newMode));
+  }}
+>
+  {darkMode ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+</button>
+
+
       <input
         type="text"
         placeholder="Escribe una ciudad..."

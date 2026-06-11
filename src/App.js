@@ -81,6 +81,22 @@ localStorage.setItem("history", JSON.stringify(newHistory));
   
   let bgClass = "default";
 
+  let weatherTip = "";
+
+if (weather && weather.weather) {
+  const condition = weather.weather[0].main;
+
+  if (condition === "Clear") {
+    weatherTip = "😎 Perfecto para salir a caminar";
+  } else if (condition === "Rain") {
+    weatherTip = "☔ No olvides tu paraguas";
+  } else if (condition === "Clouds") {
+    weatherTip = "💻 Un día ideal para programar";
+  } else if (condition === "Thunderstorm") {
+    weatherTip = "⚠️ Mejor quedarse bajo techo";
+  }
+}
+
   if(weather && weather.weather) {
     const condition = weather.weather[0].main;
 
@@ -93,8 +109,7 @@ localStorage.setItem("history", JSON.stringify(newHistory));
  
   return (
     <div className={`app ${bgClass}`}>
-      <h1>🌤️ Weather App</h1>
-
+        <h1>🌦️ Weather Vision Pro</h1>
       <input
         type="text"
         placeholder="Escribe una ciudad..."
@@ -143,10 +158,23 @@ localStorage.setItem("history", JSON.stringify(newHistory));
 
           <p>{weather.weather[0].description}</p>
 
+          <p className="weather-tip">
+  {weatherTip}
+</p>
+
           <p> 🌪️ viento: {weather.wind.speed} m/s</p>
 
 
           <p> 💧 humedad: {weather.main.humidity}%</p>
+
+          <p> 🌡️ Sensación térmica: {weather.main.feels_like}°C</p>
+
+          <p> 👁️ Visibilidad: {(weather.visibility / 1000).toFixed(1)} km</p>
+
+          <p>
+  🕒 Hora local:
+  {new Date().toLocaleTimeString()}
+</p>
              
 
         </div>

@@ -86,6 +86,8 @@ localStorage.setItem("history", JSON.stringify(newHistory));
 
   let weatherTip = "";
 
+  let clothingAdvice = "";
+
 if (weather && weather.weather) {
   const condition = weather.weather[0].main;
 
@@ -108,6 +110,20 @@ if (weather && weather.weather) {
     else if (condition === "Rain") bgClass = "rainy";
     else if (condition === "Thunderstorm") bgClass = "stormy";
   }
+
+  if (weather && weather.main) {
+  const temp = weather.main.temp;
+
+  if (temp <= 10) {
+    clothingAdvice = "🧥 Hace bastante frío. Usa chaqueta gruesa.";
+  } else if (temp <= 20) {
+    clothingAdvice = "🧥 Lleva una chaqueta ligera.";
+  } else if (temp <= 28) {
+    clothingAdvice = "👕 Temperatura agradable. Ropa cómoda recomendada.";
+  } else {
+    clothingAdvice = "🩳 Hace calor. Usa ropa fresca y toma agua.";
+  }
+}
 
  
   return (
@@ -176,6 +192,10 @@ if (weather && weather.weather) {
 
           <p className="weather-tip">
   {weatherTip}
+</p>
+
+       <p className="clothing-advice">
+  {clothingAdvice}
 </p>
 
           <p> 🌪️ viento: {weather.wind.speed} m/s</p>
